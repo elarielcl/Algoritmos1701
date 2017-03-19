@@ -1,0 +1,7 @@
+#Java
+*.class
+
+#Latex
+*.pdf
+*.aux
+*.log

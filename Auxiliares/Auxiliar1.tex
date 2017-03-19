@@ -1,0 +1,120 @@
+\documentclass[dcc,uchile]{fcfmcourse}
+\usepackage{teoria}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,setspace}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+
+
+
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{porange}{rgb}{0.9,0.5,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{porange},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pgreen},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$ $},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\newenvironment{codebox} {\small \ttfamily \obeylines \begingroup \setstretch{-2.4}} {\endgroup}
+
+% COmpletar titulo
+\title{Auxiliar 1 - ``Write Once, Run Anywhere"}
+\course[CC3001]{Algoritmos y Estructuras de Datos}
+\professor{Nelson Baloian}
+\professor{Patricio Poblete}
+\assistant{Gabriel Azócar, Manuel Cáceres}
+\assistant{Michel Llorens, Sergio Peñafiel}
+
+
+\begin{document}
+\maketitle
+
+\vspace{-1ex}
+
+
+\begin{problems}
+%Bienvenida
+%Instalación java y descripción general (orientación del lenguaje)
+%¿Donde aprender java?
+
+\problem \underline{\textbf{Ordenar 3}}\\
+Escriba un fragmento de código en Java que tome los valores de 3 variables enteras $a, b, c$ y deje el menor valor en $a$, el mayor valor en $c$ y el otro en $b$.
+%Acá se pueden explicar ifs, else, print, que el llamado de las funciones es por valor, e "intercambiar" que será un procedimiento que utilizaremos bastante
+
+\problem \underline{\textbf{Rotación Circular}}\\
+Un string $r$ es una ``\textit{rotación circular}" de otro string $w$ si al hacer un ``shift circular" a $r$ resulta $w$.
+
+Por ejemplo, \textit{kerstic} es una rotación cirular de \textit{sticker} y viceversa. 
+Escriba la función en Java \texttt{static boolean esRotacionCircular(String r, String w)} que recibe dos strings y retorna \texttt{true} si uno es rotación circular del otro (\texttt{false} en caso contrario).
+%Se puede usar el problema como escusa para mostrar la documentación de java de String y de pasada mostrar que existe la documentación), para mostrar métodos de strings, mostrar inmutabilidad de algunos objetos (String no pueden mutar)
+
+
+%Problema de las fracciones/racionales
+%\problem \underline{\textbf{Fracción}}\\
+%Java es un lenguaje de programación orientado a %objetos, por tanto, a diferencia de lenguajes como Python el scripting no es directo y uno suele encapsular todo en clases, las cuales suelen funcionar como pequeñas máquinas a las cuales se les pide realizar acciones.
+
+%Dicho lo anterior, se pide escribir la clase \texttt{Fraccion}, la cual para crearse necesitará tanto el numerador como el denominador y debe permitir que se simplifique o se sume a otra fracción, es decir se pueda ejecutar lo siguiente:
+
+%\begin{lstlisting}
+%> Fraccion frac = new Fraccion(10, 5);
+%> Fraccion frac2 = new Fraccion(5, 5);
+%> frac.suma(frac2);
+%>> "3/1"
+%\end{lstlisting}
+
+%¿Cómo implementaría usted que la clase \texttt{Fraccion} pueda ser inicializada con un string? Por ejemplo \texttt{new Fraccion("10/2")}.
+\problem \underline{\textbf{Fracciones}}\\
+Cree la clase \texttt{Fraccion} con la siguiente definición:
+
+\begin{enumerate}
+\item Cree un constructor \texttt{public Fraccion(int num, int den)}, que inicializa una fracción usando num y den como numerador y denominador.
+\item Cree otro constructor\footnote{Las clases en Java pueden tener más de un constructor siempre que reciban parámetros distintos} \texttt{public Fraccion(String frac)} donde frac es un string que representa una fracción por ejemplo ''3/5'', debe descomponer este string y guardar los numeros como enteros. (Puede suponer que el string siempre será válido).
+\item Cree la función \texttt{public static int mcd(int a, int b)} que calcula el mcd entre 2 números, para esto use el algoritmo de Euclides este dice que el $mcd(a,b)=mcd(b,a\%b)$ además como caso base se tiene que $mcd(a,0)=a$.
+\item Cree el método \texttt{public void simplificar()} que simplifica la fracción, para esto use \texttt{mcd}
+\item Cree el método \texttt{public Fraccion suma(Fraccion other)} que devuelve la fracción simplificada que representa la suma de la fracción actual con la fracción other.
+\item Cree el método \texttt{public String toString()} que devuelve un string que representa la fracción por ejemplo ''4/7''.
+\end{enumerate}
+\newpage
+Utilice la clase anterior en un programa interactivo que sume n fracciones. Primero deberá pedir al usuario un numero n, y luego deberá pedir que ingrese n fracciones, al final deberá mostrar la suma de las n Fracciones.
+
+\begin{codebox}
+n?
+3
+Fraccion 1?
+1/4
+Fraccion 2?
+1/3
+Fraccion 3?
+-1/12
+La suma total es: 1/2
+\end{codebox}
+
+
+%Problema de archivos
+\problem \underline{\textbf{Fibonacci}}\\
+Generalmente Fibonacci se suele representar en función de sus elementos anteriores de la forma $f(n) = f(n-1) + f(n-2)$, el problema es que a medida que se requiere un número más grande, más pasos previos se requieren. Por tanto se propone ir guardando los números ya calculados en un archivo.
+
+Teniendo ya un archivo con los primeros $n \ge 2$ números de Fibonacci, uno en cada línea, escriba la función \texttt{static void fileFibonacci()} que despliegue en pantalla los números ya calculados y además agregue al final de este el siguiente. ¿Cómo extendería esto para calcular los siguientes $k$ números en vez de sólo uno?
+%La idea es explicar tanto la lectura como la escritura de archivos utilizando Buffers, así como los cast por medio de funciones y no usando el autobox (ej: String.valueOf() o Integer.parseInt() ). El problema se puede extender a por qué los números más grandes deben guardarse en forma de texto y no en variables numéricas que conllevan overflow (ver problema año 2038)
+\end{problems}
+
+
+
+\end{document}
+
+

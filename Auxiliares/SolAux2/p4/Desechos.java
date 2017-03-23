@@ -30,12 +30,10 @@ public class Desechos {
             state = machine(state, recibeRecurso());
             if (state == anterior) desechado++;
         }
-        float porcentaje = (((float) desechado*100)/N); // Debería ser 
-cercano a 33.33
+        float porcentaje = (((float) desechado*100)/N); // Debería se cercano a 33.33
         System.out.println("Desechado: " + porcentaje + "%");
         if(porcentaje <= 35.0){
-            System.out.println("La producción es rentable");  //Deberia 
-dar siempre este para N grande por LLN
+            System.out.println("La producción es rentable");  //Deberi dar siempre este para N grande por LLN
         }
         else{
             System.out.println("La producción NO es rentable");

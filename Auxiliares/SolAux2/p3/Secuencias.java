@@ -1,4 +1,3 @@
-package SolAux2.p3;
 
 /**
  * Class Secuencias

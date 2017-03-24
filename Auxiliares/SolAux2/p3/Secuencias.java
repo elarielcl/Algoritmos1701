@@ -28,6 +28,7 @@ public class Secuencias {
             sum += 1.0/i;
             if (sum < previousSum || i > N)
                 throw new Exception("Invariante inválido");
+            previousSum = sum;
         }
         return sum;
 

@@ -15,7 +15,7 @@ class Nodo {
 	
 }
 
-public class AVL {
+public class Avl {
 	
 	public static int alturaDer(Nodo n) {
 		return n.der == null? -1: n.der.altura();
@@ -33,42 +33,42 @@ public class AVL {
 		if (x < b.info) {
 			b.izq = insertar(b.izq,x);
 			if (Math.abs(alturaIzq(b) - alturaDer(b)) == 2) {
-				if (x < b.izq.info)
-					b = rotateToLeft(b); /* Caso 1 */
+				if (alturaDer(b.der) <= alturaIzq(b.der))
+					b = rotateRight(b); 
 				else
-					b = doubleToLeft(b); /* Caso 2 */
+					b = doubleRight(b);
 			}
 		}
 		else if (x > b.info) {
 			b.der = insertar(b.der, x);
 			if (Math.abs(alturaIzq(b) - alturaDer(b)) == 2) {
-				if (x > b.der.info)
-					b = rotateToRight(b); /* Caso 4 */
+				if (alturaDer(b.der) >= alturaIzq(b.der))
+					b = rotateLeft(b); 
 				else
-					b = doubleToRight(b); /* Caso 3 */
+					b = doubleLeft(b); 
 			}
 		}
 		return b;
 	}
 
-	private static Nodo doubleToRight(Nodo b) {
-		b.der = rotateToLeft(b.der);
-		return rotateToRight(b);
+	private static Nodo doubleLeft(Nodo b) {
+		b.der = rotateRight(b.der);
+		return rotateLeft(b);
 	}
 
-	private static Nodo rotateToRight(Nodo padre) {
+	private static Nodo rotateLeft(Nodo padre) {
 		Nodo hijo = padre.der;
 		padre.der = hijo.izq;
 		hijo.izq = padre;
 		return hijo;
 	}
 
-	private static Nodo doubleToLeft(Nodo b) {
-		b.izq = rotateToRight(b.izq);
-		return rotateToLeft(b);
+	private static Nodo doubleRight(Nodo b) {
+		b.izq = rotateLeft(b.izq);
+		return rotateRight(b);
 	}
 
-	private static Nodo rotateToLeft(Nodo padre) {		
+	private static Nodo rotateRight(Nodo padre) {		
 		Nodo hijo = padre.izq;
 		padre.izq = hijo.der;
 		hijo.der = padre;

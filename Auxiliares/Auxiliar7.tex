@@ -1,0 +1,67 @@
+\documentclass[dcc,uchile,sol]{fcfmcourse}
+\usepackage{teoria}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,setspace}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{tikz}
+
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{porange}{rgb}{0.9,0.5,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{porange},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pgreen},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$ $},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\newenvironment{codebox} {\small \ttfamily \obeylines \begingroup \setstretch{-2.4}} {\endgroup}
+
+\newcommand{\ptitle}[1]{\underline{\textbf{#1}}}
+
+\title{Auxiliar 7 - Árboles Balanceados}
+\course[CC3001]{Algoritmos y Estructuras de Datos}
+\professor{Nelson Baloian}
+\professor{Patricio Poblete}
+\assistant{Gabriel Azócar, Manuel Cáceres}
+\assistant{Michel Llorens, Sergio Peñafiel}
+
+
+\begin{document}
+\maketitle
+
+\vspace{-1ex}
+
+
+\begin{problems}
+\problem \ptitle{AVL}\\
+Un AVL es un árbol binario de búsqueda balanceado que cumple que para todo nodo, la diferencia de alturas de sus hijos es a lo más 1. Para realizar las inserciones y eliminaciones en un AVL se realizan del mismo modo que en un árbol binario de búsqueda y luego se verifica recursivamente que la condición de diferencia de alturas se siga cumpliendo y se repara por medio de \textbf{rotaciones} si es necesario.
+\begin{enumerate}[a)]
+    \item Dibuje paso a paso el AVL resultante luego de insertar cada uno los siguientes elementos: $\{1, 5, 3, 8, 2, 7, 9, 4, 6, 0\}$ , indique además las rotaciones necesarias.
+    \item Implemente la función \texttt{public static Nodo insertar(Nodo a, int x)} que dada la raíz de un AVL y el elemento a insertar, retorna la raíz del AVL que contiene a este elemento y a todos los elementos del original.
+    \item Implemente la función \texttt{public static int[] ordenarAVL(int[] a)} que retorna una copia de los elementos del arreglo \texttt{a} ordenado crecientemente. Para esto utilice el método insertar de la parte b) y el hecho que recorrer un árbol binario de búsqueda en in-orden, visita las llaves de forma creciente. ¿Cuál es la ventaja que se utilice un AVL y no un ABB cualquiera? ¿Cuál es el costo es esta implementación? ¿Cómo se puede mejorar?
+\end{enumerate}
+
+\problem \ptitle{Red Black Tree}\\
+Un árbol Rojo-Negro es un tipo de árbol de búsqueda binaria auto balanceante. Esto quiere decir que intenta a toda costa mantener mínima su altura y evitar 'ramas' muy largas. Si bien el AVL hace exactamente lo mismo, este último es mucho más rígido y por tanto la inserción es más lenta (pero la recuperación es más rápida). Para esto, cada nodo está marcado con un \textbf{color} y dependiendo de ellos realiza rotaciones.
+\begin{enumerate}[a)]
+    \item Dibuje paso a paso el Red Black Tree resultante luego de insertar cada uno los siguientes elementos: $\{2, 1, 4, 5, 9, 3, 6, 7\}$ , indique además las rotaciones necesarias.
+    \item Dibuje el diagrama de estados correspondiente al comportamiento de la función \texttt{public void insertar(int value)} que posee la clase RedBlackTree.
+\end{enumerate}
+\end{problems}
+\end{document}
+

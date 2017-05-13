@@ -15,7 +15,7 @@ class Nodo {
 	
 }
 
-public class Avl {
+public class AVL {
 	
 	public static int alturaDer(Nodo n) {
 		return n.der == null? -1: n.der.altura();
@@ -33,7 +33,7 @@ public class Avl {
 		if (x < b.info) {
 			b.izq = insertar(b.izq,x);
 			if (Math.abs(alturaIzq(b) - alturaDer(b)) == 2) {
-				if (alturaDer(b.der) <= alturaIzq(b.der))
+				if (alturaDer(b.izq) <= alturaIzq(b.izq))
 					b = rotateRight(b); 
 				else
 					b = doubleRight(b);

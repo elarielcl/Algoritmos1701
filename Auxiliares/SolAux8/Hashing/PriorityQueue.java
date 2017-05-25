@@ -97,7 +97,9 @@ public class PriorityQueue {
     }
 
     public void printAVG(){
-        double avg = (this.total*1.0)/this.counter;
+        double avg = 0;
+        if(counter != 0)
+            avg = (this.total*1.0)/this.counter;
         System.out.println("Queue find AVG: "+avg);
     }
 

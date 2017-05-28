@@ -1,0 +1,87 @@
+\documentclass[dcc,uchile,sol]{fcfmcourse}
+\usepackage{teoria}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,setspace}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{tikz}
+
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{porange}{rgb}{0.9,0.5,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{porange},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pgreen},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$ $},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\newenvironment{codebox} {\small \ttfamily \obeylines \begingroup \setstretch{-2.4}} {\endgroup}
+
+\newcommand{\ptitle}[1]{\underline{\textbf{#1}}}
+
+\title{Auxiliar 8 - Árboles Digitales y Splay-Trees}
+\course[CC3001]{Algoritmos y Estructuras de Datos}
+\professor{Nelson Baloian, Patricio Poblete}
+\assistant{Gabriel Azócar, Manuel Cáceres}
+\assistant{Michel Llorens, Sergio Peñafiel}
+
+%%Tries de aridad \sigma con operación de strings
+
+%%Inserción en splaytrees (año pasado)
+
+%%Insercion skiplist (año pasado)
+
+%%Hashing con ecadenamiento (año pasado), pero con MTF
+
+%%Programar ABB óptimo (mmm no se esto es teorico y de progra dinamica), no se si les sirva en realidad
+
+\begin{document}
+\maketitle
+
+\vspace{-1ex}
+
+
+\begin{problems}
+
+\problem \ptitle{Splay Tree}\\
+Un Splay tree es un árbol de búsqueda auto-ajustable en el cual cada vez que un elemento
+x es insertado, tras encontrar su lugar, como en un ABB cualquiera, es llevado hasta la raíz
+mediante rotaciones. Se le pide que para las siguientes secuencias de datos, dibuje cómo
+quedan las inserciones elemento a elemento:
+\begin{itemize}
+    \item 1, 2, 4, 3, 5
+    \item 5, 10, 2, 8, 7, 3, 6
+\end{itemize}
+
+\problem \ptitle{Tries}
+
+Un trie es una generalización de un árbol digital usando cualquier símbolo, con esto si se tiene un alfabeto $\Sigma$, cada nodo puede tener hasta $|\Sigma|$ hijos, uno por cada símbolo. Esta estructura puede almacenar strings y ser usada tanto para implementar el TDA diccionario, como para resolver problemas asociados a strings.
+
+\begin{enumerate}
+    \item Cree la clase \texttt{Trie} con los siguientes métodos \texttt{insertar(String s)} y \texttt{contiene(String s)}. Para la implementación del trie use nodos de árboles generales, estos son los que tienen, además del valor, una referencia a su hijo y a un vecino. Calcule el orden de las operaciones anteriores, ¿De qué variables dependen?.
+    
+    \textbf{Indicación:} Suponga que el caracter $\$ \notin \Sigma$ y úselo para determinar el fin de un string. 
+    
+    \item Cree el método \texttt{encontrarConPrefijo(String p)} que muestra en pantalla todos los strings que tienen como prefijo a p y que están en el trie. Note que este problema soluciona de forma eficiente el problema de autocompletado de formularios, en el que cuando el usuario tipea un string en una caja de texto se le ofrecen posibles respuestas.
+\end{enumerate}
+
+
+
+
+\end{problems}
+\end{document}
+

@@ -195,10 +195,15 @@ public class T4 {
             nodo.value + " (" + 
             nodoToStringPulido(nodo.izq) + ")";
       } 
+      else if(nodo.der.value.equals("*") || nodo.der.value.equals("/"))
+        return nodoToStringPulido(nodo.der) + " " + 
+        nodo.value + " " + 
+        nodoToStringPulido(nodo.izq);
+      
       else {
-        return "(" + nodoToStringPulido(nodo.der) + ") " + 
-            nodo.value + " (" +
-            nodoToStringPulido(nodo.izq) + ")";
+        return nodoToStringPulido(nodo.der)  + " " +
+            nodo.value + " " +
+            nodoToStringPulido(nodo.izq);
       }
     } else {
       return arbol.value;
@@ -242,9 +247,13 @@ public class T4 {
   public static void main(String[] args) {
     T4 t = new T4();
     //2 * (x / 3) + (y - x) == 2 x 3 / * y x - +
-    t.calcular("2 x 3 / * y x - +", "x");
-    
-    t.calcularPulido("2 x 3 / * y x - +", "x");
+    //t.calcular("2 x 3 / * y x - +", "y");
+    //t.calcularPulido("2 x 3 / * y x - +", "x");
+    //t.calcularPulido("2 x + 3 * 5 /", "x");
+    //t.calcularPulido("x y / 5 /", "x");
+    //t.calcularPulido(" 2 y + 3 + 5 /", "x");
+    //t.calcularPulido("x y / 5 /", "x");
+    t.calcularPulido("3 2 + x y + /", "y");
 
   }
 }

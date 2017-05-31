@@ -147,17 +147,16 @@ public class T4 {
     
     if(nodo == null)
      return "";
-        
-    if(nodo.izq == null && nodo.der == null) {
-      return nodo.value;
-    }
     
+    //Suma
     if(nodo.value.equals("+")) 
     {
       return nodoToStringPulido(nodo.der) + " " + 
           nodo.value + " " + 
           nodoToStringPulido(nodo.izq);    
     } 
+    
+    //Resta
     else if(nodo.value.equals("-")) 
     {
       if(nodo.der.value.equals("0"))
@@ -169,7 +168,9 @@ public class T4 {
           nodo.value + " " + 
           nodoToStringPulido(nodo.izq);    
     } 
-    else if (nodo.value.equals("*") || nodo.value.equals("/") ) {
+    
+    //Multiplicacion
+    else if (nodo.value.equals("*")) {
       if(esNum(nodo.izq) && esNum(nodo.der)) {
         return nodoToStringPulido(nodo.der) + " " + 
                nodo.value + " " + 
@@ -191,23 +192,56 @@ public class T4 {
           nodo.value + " " + 
           nodoToStringPulido(nodo.izq);
         else
-          return nodoToStringPulido(nodo.der) + " " + 
-            nodo.value + " (" + 
-            nodoToStringPulido(nodo.izq) + ")";
+          return "(" + nodoToStringPulido(nodo.der) + ") " + 
+            nodo.value + " " + 
+            nodoToStringPulido(nodo.izq);
       } 
-      else if(nodo.der.value.equals("*") || nodo.der.value.equals("/"))
-        return nodoToStringPulido(nodo.der) + " " + 
-        nodo.value + " " + 
-        nodoToStringPulido(nodo.izq);
-      
       else {
         return nodoToStringPulido(nodo.der)  + " " +
             nodo.value + " " +
             nodoToStringPulido(nodo.izq);
       }
-    } else {
-      return arbol.value;
-    }    
+    }
+    //Divison
+    else if(nodo.value.equals("/")) {
+      if(esNum(nodo.izq) && esNum(nodo.der)) {
+        return nodoToStringPulido(nodo.der) + " " + 
+               nodo.value + " " + 
+               nodoToStringPulido(nodo.izq);
+      }
+      else if(nodo.izq.value.equals("*")) {
+        return nodoToStringPulido(nodo.der) + " " +  
+            nodo.value + " (" + 
+            nodoToStringPulido(nodo.izq) +")";
+      }
+      else if(esNum(nodo.der)) {
+        if(nodo.izq.value.equals("/"))
+          return nodoToStringPulido(nodo.der) + " " + 
+          nodo.value + " " + 
+          nodoToStringPulido(nodo.izq);
+        else
+          return nodoToStringPulido(nodo.der) + " " + 
+            nodo.value + " (" + 
+            nodoToStringPulido(nodo.izq) + ")";
+      } 
+      else if(esNum(nodo.izq)) {
+        if(nodo.der.value.equals("/")  || nodo.der.value.equals("*"))
+          return nodoToStringPulido(nodo.der) + " " + 
+          nodo.value + " " + 
+          nodoToStringPulido(nodo.izq);
+        else
+          return "(" + nodoToStringPulido(nodo.der) + ") " + 
+            nodo.value + " " + 
+            nodoToStringPulido(nodo.izq);
+      } 
+      else {
+        return "("+ nodoToStringPulido(nodo.der)  + ") " +
+            nodo.value + " (" +
+            nodoToStringPulido(nodo.izq) + ")";
+      }
+    }
+    
+    return nodo.value;
   }
   
   public void printLeafNodes(Nodo nodo) {
@@ -235,7 +269,6 @@ public class T4 {
     
     //t.crearArbolExpresion("2 x 3 + - y x - +");
     //t.crearArbolExpresion("2 x 3 / *");
-    
     crearArbolExpresion(expr);
     printLeafNodesPulido(arbol);
     arbol = derivar(arbol, var);
@@ -247,12 +280,16 @@ public class T4 {
   public static void main(String[] args) {
     T4 t = new T4();
     //2 * (x / 3) + (y - x) == 2 x 3 / * y x - +
-    //t.calcular("2 x 3 / * y x - +", "y");
-    //t.calcularPulido("2 x 3 / * y x - +", "x");
-    //t.calcularPulido("2 x + 3 * 5 /", "x");
-    //t.calcularPulido("x y / 5 /", "x");
-    //t.calcularPulido(" 2 y + 3 + 5 /", "x");
-    //t.calcularPulido("x y / 5 /", "x");
+    t.calcularPulido("2 x 3 / * y x - +", "x");
+    t.calcularPulido("2 x 3 / * y x - +", "y");
+    
+    t.calcularPulido("2 x + 3 * 5 /", "x");
+    t.calcularPulido("2 x + 3 * 5 /", "y");
+    
+    t.calcularPulido("x y / 5 /", "x");
+    t.calcularPulido("x y / 5 /", "y");
+    
+    t.calcularPulido("3 2 + x y + /", "x");
     t.calcularPulido("3 2 + x y + /", "y");
 
   }

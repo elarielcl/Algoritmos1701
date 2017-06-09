@@ -21,7 +21,9 @@ public class QuicksortExample {
       }
     }
   }
-  
+
+
+
   public static void quicksort(Pedido pedidos[], int izq, int der) {
     
     //int pIndex = randomPivot(pedidos.length, izq, der);
@@ -31,32 +33,35 @@ public class QuicksortExample {
 
     int i = izq;
     int j = der;
-    Pedido aux;
-   
+
+    swap(pedidos, izq, pIndex);
+
     while (i < j) {
        while(pedidos[i].nOrden <= pivote.nOrden && i < j) i++;
        
        while(pivote.nOrden < pedidos[j].nOrden) j--;         
        
        if (i < j) {                                            
-           aux = pedidos[i];                  
-           pedidos[i] = pedidos[j];
-           pedidos[j] = aux; 
+           swap(pedidos,i,j);
        }
      }
     
-     pedidos[izq] = pedidos[j];
-     pedidos[j] = pivote;
-
+     swap(pedidos,j,izq);
      
      if(izq < j - 1)
         quicksort(pedidos, izq, j - 1);
      
-     if(j + 1 <der)
+     if(j + 1 < der)
         quicksort(pedidos, j + 1, der);
   }
 
-  public static void main(String[] args) {
+    private static void swap(Pedido[] pedidos, int i, int j) {
+        Pedido aux = pedidos[i];
+        pedidos[i] = pedidos[j];
+        pedidos[j] = aux;
+    }
+
+    public static void main(String[] args) {
     Pedido a = new Pedido(1, "Italiana", "Beauchef 850");
     Pedido b = new Pedido(12, "Pina", "Beauchef 851");
     Pedido c = new Pedido(4, "Napolitana", "Providencia 1134");
@@ -70,7 +75,7 @@ public class QuicksortExample {
     for(int i = 0; i < pedidos.length; i++) {
       System.out.print(pedidos[i].nOrden + " ");
     }
-    System.out.println();
+    System.out.println("");
     
     quicksort(pedidos, 0, pedidos.length - 1);
     

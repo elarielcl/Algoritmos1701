@@ -6,7 +6,7 @@ public class GrahamScan {
 	    int n = P.length;
 		Stack<Punto> envoltura = new Stack<Punto>();
 	    
-	    Arrays.sort(P, 1, n, Punto.ORDEN_Y);
+	    Arrays.sort(P, Punto.ORDEN_Y);
 
         Arrays.sort(P, 1, n, P[0].ordenAngulo());
 

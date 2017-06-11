@@ -41,7 +41,29 @@ public class GrahamScan {
         return E;
 	}
 	
+	public static void printArray(Punto[] array){
+		System.out.print("[");
+		for(Punto p: array)
+			System.out.print("(" + p.x + "," + p.y + "), ");
+		System.out.println("]");
+	}
+	
 	public static void main(String[] args) {
+		Punto[] pointCloud = new Punto[5];
+		
+		pointCloud[0] = new Punto(0,0);
+		pointCloud[1] = new Punto(10,0);
+		pointCloud[2] = new Punto(10,10);
+		pointCloud[3] = new Punto(0,10);
+		pointCloud[4] = new Punto(5,5);
+		
+		System.out.println("Point Cloud");
+		printArray(pointCloud);
+		
+		Punto[] convexHull = grahamScan(pointCloud);
+		
+		System.out.println("Convex Hull");
+		printArray(convexHull);
 
 	}
 

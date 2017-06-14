@@ -1,0 +1,78 @@
+
+ \documentclass[dcc,sol]{fcfmcourse}
+\usepackage{teoria}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,setspace}
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{tikz}
+
+\usepackage{verbatim}
+\usetikzlibrary{arrows,shapes}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{porange}{rgb}{0.9,0.5,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{porange},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pgreen},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$ $},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\newenvironment{codebox} {\small \ttfamily \obeylines \begingroup \setstretch{-2.4}} {\endgroup}
+
+\title{Auxiliar 11 - Preparación Control 2}
+\course[CC3001]{Algoritmos y Estructuras de Datos}
+\professor{Nelson Baloian}
+\professor{Patricio Poblete}
+\assistant{Gabriel Azócar, Manuel Cáceres}
+\assistant{Michel Llorens, Sergio Peñafiel}
+
+
+\begin{document}
+\maketitle
+
+\vspace{-1ex}
+
+
+\begin{problems}
+
+\problem
+\problem El costo de utilizar HeapSort en $n$ elementos es el de construcción (lineal) y de extracción de elementos (linearítmico)
+\begin{align*}
+    \mathcal{O}(n + n\log n) &= \mathcal{O}(n\log n)
+\end{align*}
+\section*{Idea}
+\begin{itemize}
+    \item  Dividir el arreglo en $\approx \sqrt{n}$ de tamaño $\approx \sqrt{n}$
+    \item Ordenar con HeapSort cada una de esas partes a costo
+    \begin{align*}
+        \sqrt{n}\cdot \mathcal{O}(\sqrt{n} \log{\sqrt{n}}) = \mathcal{O}(n\log{\sqrt{n}}) = \mathcal{O}(n\log n)
+    \end{align*}
+\end{itemize}
+\begin{enumerate}[a)]
+    \item Hacer merge de las $\sqrt{n}$ partes buscando el mínimo secuencialmente a costo
+    \begin{align*}
+        n \cdot \sqrt{n} = n^{3/2}
+    \end{align*}
+    , y por lo tanto, el costo total es $\mathcal{O}(n\log n + n ^{3/2}) = \mathcal{O}(n^{3/2})$
+    \item Hacer merge de las $\sqrt{n}$ partes manteniendo un heap que se forma de los mínimos de cada una de las partes.\\
+    
+    Los $n$ elementos deben ser insertados y eliminados de un heap de tamaño $\sqrt{n}$ a lo más una vez, por lo que su costo es $2n\log{\sqrt{n}} = n\log n$ y el costo total es $\mathcal{O}(n\log n + n\log n) = \mathcal{O}(n\log n)$
+\end{enumerate}
+\problem
+\end{problems}
+\end{document}
+

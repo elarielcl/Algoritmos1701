@@ -1,0 +1,79 @@
+-\documentclass[dcc,uchile,sol]{fcfmcourse}
+\usepackage{teoria}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,setspace}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{tikz}
+
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{porange}{rgb}{0.9,0.5,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{porange},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pgreen},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$ $},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\newenvironment{codebox} {\small \ttfamily \obeylines \begingroup \setstretch{-2.4}} {\endgroup}
+
+\newcommand{\ptitle}[1]{\underline{\textbf{#1}}}
+
+\title{Auxiliar 11 - Preparación Control 2}
+\course[CC3001]{Algoritmos y Estructuras de Datos}
+\professor{Nelson Baloian}
+\professor{Patricio Poblete}
+\assistant{Gabriel Azócar, Manuel Cáceres}
+\assistant{Michel Llorens, Sergio Peñafiel}
+
+
+\begin{document}
+\maketitle
+
+\vspace{-1ex}
+
+
+\begin{problems}
+\problem \ptitle{Ordenación (P2 2016)}
+
+Escriba un método en Java llamada \textbf{Merge3}, que reciba como parámetros tres arreglos a, b y c, que contiene números enteros ordenados en orden ascendente, y que retorne un arreglo en el cual se encuentren mezclados (en orden ascendente) los elementos de los tres arreglos de entrada. Su método debe funcionar en tiempo del orden de la suma de los tamaños de los tres arreglos.
+
+\problem \ptitle{Sorting (P2 Ex 2002)}
+
+Sea un arreglo desordenado A de tamaño $n$. Considere el siguiente algoritmo de ordenación: dividir el arreglo A en
+$\sqrt{n}$ partes iguales, ordenar cada una de éstas utilizando heapsort y luego realizar la mezcla para obtener el arreglo ordenado.
+
+Analice el costo de este algoritmo de ordenación en los siguientes casos:
+\begin{enumerate}
+    \item Cuando en cada paso de mezcla se busca el mínimo de forma secuencial.
+    \item Cuando en cada paso de mezcla se busca el mínimo utilizando un heap.
+\end{enumerate}
+
+\problem \ptitle{Árboles de búsqueda binario}
+
+Sea T un árbol búsqueda binario, se define la operación \texttt{subarbolMenor} que dado una llave x, devuelve un árbol de búsqueda binario con todas las llaves de T que son menores a x. Del mismo modo se tiene la operación \texttt{subarbolMayor} que dado una llave x, devuelve un abb con todas las llaves mayores a x.
+
+\begin{enumerate}
+    \item Implemente la función \texttt{Nodo subarbolMenor(Nodo raiz, int x)} que realiza el procedimiento descrito. La función debe operar en tiempo $O(h)$ donde $h$ es la altura del árbol.
+    \item Implemente la función \texttt{Nodo insertarEnRaiz(Nodo abb, int x)} que dado un abb inserta la llave x en la raíz, suponga que tiene las funciones \texttt{subarbolMenor} y \texttt{subarbolMayor} implementadas.
+    \item Analice el costo de esta inserción. ¿Es mejor que la inserción clásica de un abb? Muestre una secuencia de inserciones que llevan al peor caso. 
+    
+\end{enumerate}
+
+
+\end{problems}
+\end{document}

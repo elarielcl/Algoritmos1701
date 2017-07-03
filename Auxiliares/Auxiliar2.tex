@@ -1,4 +1,4 @@
-\documentclass[dcc,uchile]{fcfmcourse}
+\documentclass[dcc,uchile,sol]{fcfmcourse}
 \usepackage{teoria}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
@@ -6,6 +6,7 @@
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage{color}
+\usepackage{tikz}
 
 
 
@@ -54,11 +55,11 @@ Considere el siguiente extracto de código Java:
 ...
 int f = 0;
 int g = 1;
-for (int i = 0; i <= N; i++) {
+for (int i = 1; i <= N; i++) {
     f = f + g;
     g = f - g;
 }
-StdOut.println(f);
+System.out.println(f);
 ...
 \end{lstlisting}
 
@@ -107,6 +108,39 @@ Un ingeniero establece que la producción es rentable si se desecha a lo más un
 \begin{enumerate}
     \item Cree la función \texttt{static char recibeRecurso()} que devuelve con igual probabilidad los caracteres \texttt{A} o \texttt{B}.
     \item Cree un diagrama de estados para el funcionamiento de la máquina.
+    
+    \begin{solution}
+   \begin{center}
+    \begin{tikzpicture}[scale=0.2]
+   \tikzstyle{every node}+=[inner sep=0pt]
+    \draw [black] (20.4,-24.1) circle (3);
+    \draw (20.4,-24.1) node {$E$};
+    \draw [black] (38.9,-15.1) circle (3);
+   \draw (38.9,-15.1) node {$A$};
+    \draw [black] (38.9,-36.8) circle (3);
+    \draw (38.9,-36.8) node {$B$};
+    \draw [black] (35.904,-36.764) arc (-95.46926:-153.46888:18.005);
+    \fill [black] (35.9,-36.76) -- (35.15,-36.19) -- (35.06,-37.19);
+    \draw (26.26,-34.18) node [below] {$B$};
+    \draw [black] (41.58,-35.477) arc (144:-144:2.25);
+    \draw (46.15,-36.8) node [right] {$B,\mbox{ }desecho++$};
+    \fill [black] (41.58,-38.12) -- (41.93,-39) -- (42.52,-38.19);
+    \draw [black] (36.43,-35.1) -- (22.87,-25.8);
+   \fill [black] (22.87,-25.8) -- (23.25,-26.66) -- (23.82,-25.84);
+    \draw (30.87,-29.95) node [above] {$A$};
+    \draw [black] (21.706,-21.405) arc (148.33883:83.54576:14.807);
+    \fill [black] (35.97,-14.46) -- (35.23,-13.88) -- (35.12,-14.87);
+    \draw (26.62,-15.36) node [above] {$A$};
+    \draw [black] (36.2,-16.41) -- (23.1,-22.79);
+    \fill [black] (23.1,-22.79) -- (24.04,-22.89) -- (23.6,-21.99);
+    \draw (30.8,-20.11) node [below] {$B$};
+    \draw [black] (41.58,-13.777) arc (144:-144:2.25);
+    \draw (46.15,-15.1) node [right] {$A,\mbox{ }desecho++$};
+    \fill [black] (41.58,-16.42) -- (41.93,-17.3) -- (42.52,-16.49);
+    \end{tikzpicture}
+   \end{center}
+  \end{solution}
+    
     \item En base al diagrama anterior implemente en java un programa que simule el comportamiento de la máquina para los primeros N recursos recibidos. Calcule el porcentaje de desechado y concluya.
 \end{enumerate}
 

@@ -1,0 +1,75 @@
+\documentclass[dcc,uchile]{fcfmcourse}
+\usepackage{teoria}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,setspace}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+
+
+
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{porange}{rgb}{0.9,0.5,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{porange},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pgreen},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$ $},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+\newcommand{\ptitle}[1]{\underline{\textbf{#1}}}
+
+\newenvironment{codebox} {\small \ttfamily \obeylines \begingroup \setstretch{-2.4}} {\endgroup}
+
+% COmpletar titulo
+\title{Auxiliar 9 - Hashing}
+\course[CC3001]{Algoritmos y Estructuras de Datos}
+\professor{Nelson Baloian}
+\professor{Patricio Poblete}
+\assistant{Gabriel Azócar, Manuel Cáceres}
+\assistant{Michel Llorens, Sergio Peñafiel}
+
+
+\begin{document}
+\maketitle
+
+\vspace{-1ex}
+
+
+\begin{problems}
+
+
+\problem \ptitle{Cuckoo Hashing}\\
+Los Cuckoo o Cucúlidos son una especie muy particular de aves parasitarias, las cuales irrumpen en nidos ajenos para desechar los huevos de dicho nido y reemplazarlos con los propios. El 2001 Pagh \& Rodler usaron este mismo principio para formular el \textbf{Cuckoo Hashing}, el cual utiliza internamente dos tablas y dos funciones de Hashing (una para cada una de ellas) en un procedimiento donde al insertar un elemento en un casillero, si existe algo previamente allí, este elemento es ``pateado'' a la siguiente tabla y así sucesivamente. 
+
+Con esta información:
+\begin{enumerate}[a)]
+    \item Implemente el método \texttt{public boolean find(int value)}.
+    \item Implemente el método \texttt{public void delete(int value)}.
+    \item Comente qué problemas conlleva inserción y qué se puede hacer al respecto.
+    \item Implemente el método \texttt{public void insert(int value)}.
+\end{enumerate}
+
+
+\problem \ptitle{Hashing con prioridad}\\
+%% Micho: Pronto subo la solución :D. Dudas me hacen ping!
+Dependiendo de la implementación de las funciones de hashing, estas ocasionalmente llevan a tener más de un elemento en una única casilla, resultando en que buscar un elemento pase de $O(1)$ a $O(n)$, donde el peor caso es que todos los elementos caigan en la misma casilla y se deba buscar entre ellos de forma lineal. Ahora mejoraremos el costo promedio del peor caso.
+\begin{enumerate}
+    \item Implemente el TDA \textbf{Priority Queue} con los métodos \texttt{public void insert(Object element, String key)} y \texttt{public Object find(String key)}, donde este último aumente la prioridad del elemento buscado.
+    \item Utilizando Priority Queue, implemente Hashing con encadenamiento a fin de reducir el coste promedio del peor caso.
+\end{enumerate}
+
+\end{problems}
+\end{document}

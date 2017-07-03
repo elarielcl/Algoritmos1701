@@ -1,0 +1,186 @@
+\documentclass[dcc,uchile,sol]{fcfmcourse}
+\usepackage{teoria}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,setspace}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{tikz}
+
+
+
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{porange}{rgb}{0.9,0.5,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{porange},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pgreen},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$ $},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\newenvironment{codebox} {\small \ttfamily \obeylines \begingroup \setstretch{-2.4}} {\endgroup}
+
+\newcommand{\ptitle}[1]{\underline{\textbf{#1}}}
+
+\title{Auxiliar 3 - Pauta}
+\course[CC3001]{Algoritmos y Estructuras de Datos}
+\professor{Nelson Baloian}
+\professor{Patricio Poblete}
+\assistant{Gabriel Azócar, Manuel Cáceres}
+\assistant{Michel Llorens, Sergio Peñafiel}
+
+
+\begin{document}
+\maketitle
+
+\vspace{-1ex}
+
+
+\begin{problems}
+\problem \ptitle{Invertir}
+
+\begin{lstlisting}[language=Java, frame=single]
+public class Invertir {
+
+	public static void main(String[] args) {
+		System.out.println(pow(3,4));
+		
+		System.out.println(log(2,7));
+		System.out.println(log(2,8));
+		System.out.println(log(2,9));
+			
+		System.out.println(invertir(1203));
+	}
+	
+	static int pow(int a, int N) {
+		if (N == 0) return 1;
+		return a*pow(a, N-1);
+	}
+
+	static int log(int a, int N) {
+	    if (N < a) return 0;
+	    return log(a, N/a) + 1 ;
+	}
+	
+	static int invertir(int N){
+		if (N < 10) return N;
+		return  (N % 10) * pow(10, log(10,N)) + invertir(N/10);
+	}
+	
+}
+\end{lstlisting}
+
+
+\problem \ptitle{Ecuaciones de Recurrencia}
+
+\begin{enumerate}
+    \item $a_n = 3a_{n-1} + 4a_{n-2}$ con $a_0 = 0$ y $a_1 = 5$ 
+    
+    Ecuación de recurrencia lineal homogenea, luego se propone una solución del tipo:  $a_n = \lambda^n$ entonces:
+    \begin{align*}
+    \lambda^n = 3\lambda^{n-1} + 4\lambda^{n-2} \\
+    \lambda^2 = 3\lambda + 4 \\
+    (\lambda - 4)(\lambda + 1) = 0
+    \end{align*}
+    
+    Luego $\lambda = 4$ o $\lambda = -1$, entonces $a_n = \alpha 4^n + \beta (-1)^n$, al reemplazar los valores iniciales:
+    \begin{align*}
+    \alpha + \beta = 0 \\
+    4\alpha - \beta = 5 \\
+    \Rightarrow \alpha = 1,\; \beta = -1
+    \end{align*}
+    
+    Entonces $a_n = 4^n - (-1)^n$\\
+    
+    
+    \item $a_n = a_{n-1} + n$ con $a_0 = 1$
+    
+    Al desenrollar la ecuación se obtiene:
+    \begin{align*}
+    a_n = a_{n-1} + n \\
+    a_n = a_{n-2} + (n-1) + n \\
+    a_n = a_{n-3} + (n-2) + (n-1) + n \\
+    \dots
+    \end{align*}
+    
+    El caso general es:
+    
+    \begin{align*}
+    a_n = a_{n-k} + \sum_{i = n-k+1}^{n} i 
+    \end{align*}
+    
+    Tomando $k = n$, y reemplazando el caso base se tiene
+    \begin{align*}
+    a_n = a_0 + \sum_{i = 1}^{n} i \\
+    a_n = 1 + \frac{n(n+1)}{2} \\
+    a_n = \frac{n^2}{2} + \frac{n}{2} + 1
+    \end{align*}
+    
+\end{enumerate}
+
+
+\problem \ptitle{Teorema Maestro y Recurrencia}\\
+Obtenga las cotas superiores para los siguientes problemas utilizando el teorema maestro.
+\begin{enumerate}
+    \item $T(n)=2T(\frac{n}{2})+n^3$
+    \begin{align*}
+        T(n)=2T(\frac { n }{ 2 } )+{ n }^{ 3 }\\
+        a=2\quad b=2\quad c=3 \\
+        \log _{ b }{ a } =\log _{ 2 }{ 2 } =1 \\
+        \log _{ b }{ a }=1<c=3\Leftrightarrow Caso\quad3 \\ \\
+        Si\quad af(\frac{n}{b})\le kf(n), k<1.\\
+        Entonces\quad T(n)=\Theta(f(n)) \\
+        af(\frac{n}{b})=2\frac{n^3}{8} \le kn^3, \forall k\ge \frac{1}{4} \\
+        \Rightarrow T(n)=\Theta(f(n))=\Theta(n^3)
+    \end{align*}
+    \item $T(n)=16T(\frac{n}{4})+n^2$
+    \begin{align*}
+        T(n)=16T(\frac { n }{ 4 } )+n^{ 2 }\\ a=16\quad b=4\quad c=\quad 2\\ \log _{ b }{ a } =\log _{ 4 }{ 16 } =2\\ \log _{ b }{ a } =2=c=2\Leftrightarrow Caso\quad 2,\quad k=0\\ \\ Si\quad T(n)=\Theta ({ n }^{ c }{ \log { n }  }^{ k+1 })\\ \Rightarrow T(n)=\Theta ({ n }^{ 2 }\log { n } )
+    \end{align*}
+    \item $T(n)=7T(\frac{n}{3})+n^2$
+    \begin{align*}
+        T(n)=7T(\frac { n }{ 3 } )+n^{ 2 }\\ a=7\quad b=3\quad c=\quad 2\\ \log _{ b }{ a } =\log _{ 3 }{ 7 } \cong 1.8\\ \log _{ b }{ a } \cong 1.8<c=2\Leftrightarrow Caso\quad 3\\ \\ af(\frac { n }{ b } )=7\frac { n^{ 2 } }{ 9 } \le kn^{ 2 },\forall k\ge \frac { 7 }{ 9 } \\ \Rightarrow T(n)=\Theta (f(n))=\Theta (n^{ 2 })
+    \end{align*}
+    \item $T(n)=7T(\frac{n}{2})+n^2$
+    \begin{align*}
+        T(n)=7T(\frac { n }{ 2 } )+n^{ 2 }\\ a=7\quad b=2\quad c=\quad 2\\ \log _{ b }{ a } =\log _{ 2 }{ 7 } \cong 2.8\\ \log _{ b }{ a } \cong 2.8>c=2\Leftrightarrow Caso\quad 1\\ \\ \Rightarrow T(n)=\Theta ({ n }^{ \log _{ b }{ a }  })\\ \Rightarrow T(n)\cong \Theta ({ n }^{ 2.8 })
+    \end{align*}
+    \item $T(n)=2T(\frac{n}{4})+\sqrt{n}$
+    \begin{align*}
+        T(n)=2T(\frac { n }{ 4 } )+\sqrt { n } \\ a=2\quad b=4\quad c=\frac { 1 }{ 2 } \\ \log _{ b }{ a } =\log _{ 4 }{ 2 } =\frac { 1 }{ 2 } \\ \log _{ b }{ a } =\frac { 1 }{ 2 } =c=\frac { 1 }{ 2 } \Leftrightarrow Caso\quad 2,\quad k=0\\ \Rightarrow T(n)=\Theta (\sqrt { n } \log { n } )
+    \end{align*}
+    \item $T(n)=3T(\frac{n}{2})+nlgn$
+    \begin{align*}
+        T(n)=3T(\frac { n }{ 2 } )+nlgn\\ a=3\quad b=2\quad c=1\\ \log _{ b }{ a } =\log _{ 2 }{ 3 } \cong 1.6\\ \log _{ b }{ a } \cong 1.6>c=1\Leftrightarrow Caso\quad 1\\ \\\Rightarrow T(n)=\Theta ({ n }^{ \log _{ b }{ a }  })\\ \Rightarrow T(n)\cong \Theta ({ n }^{ 1.6 })
+    \end{align*}
+    \item $T(n)=4T(\frac{n}{2})+n^2\sqrt{n}$
+    \begin{align*}
+        T(n)=4T(\frac { n }{ 2 } )+n^{ 2 }\sqrt { n } \\ T(n)=4T(\frac { n }{ 2 } )+n^{ \frac { 5 }{ 2 }  }\\ a=4\quad b=2\quad c=\frac { 5 }{ 2 } \\ \log _{ b }{ a } =\log _{ 2 }{ 4 } =2\\ \log _{ b }{ a } =2<c=2.5\Leftrightarrow Caso\quad 3\\ \\ af(\frac { n }{ b } )=\frac { { n }^{ 2.5 } }{ \sqrt { 2 }  } \le kn^{ 2.5 },\forall k\ge \frac { 1 }{ \sqrt { 2 }  } \\ \Rightarrow T(n)=\Theta (f(n))=\Theta (n^{ 2.5 })
+    \end{align*}
+    \item $T(n)=T(9\frac{n}{10})+n$
+    \begin{align*}
+        T(n)=T(9\frac { n }{ 10 } )+n\\ a=1\quad b=\frac { 10 }{ 9 } \quad c=1\\ \log _{ b }{ a } =\log _{ \frac { 10 }{ 9 }  }{ 1 } =0\\ \log _{ b }{ a } =0<c=1\Leftrightarrow Caso\quad 3\\ \\ af(\frac { n }{ b } )=\frac { 9n }{ 10 }\le kn, \forall k\ge \frac{9}{10}\\
+        \Rightarrow T(n)=\Theta(f(n))=\Theta(n)
+    \end{align*}
+    \item $T(n)=2T(\frac{n}{2})+nlgn$
+    \begin{align*}
+        T(n)=2T(\frac { n }{ 2 } )+nlgn\\ a=2\quad b=2\quad c=1\\ \log _{ b }{ a } =\log _{ 2 }{ 2 } =1\\ \log _{ b }{ a } =1=c=1\Leftrightarrow Caso\quad 2,\quad k=1\\ \Rightarrow T(n)=\Theta (n{ \log { n }  }^{ 2 })
+    \end{align*}
+\end{enumerate}
+
+
+\end{problems}
+\end{document}

@@ -1,0 +1,81 @@
+\documentclass[dcc,uchile]{fcfmcourse}
+\usepackage{teoria}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts,setspace}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage[lined,boxed,commentsnumbered]{algorithm2e}
+\SetKwInput{KwIn}{Input}
+\renewcommand{\algorithmcfname}{Algoritmo}
+
+
+
+
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{porange}{rgb}{0.9,0.5,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{porange},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pgreen},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$ $},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+\newcommand{\ptitle}[1]{\underline{\textbf{#1}}}
+
+\newenvironment{codebox} {\small \ttfamily \obeylines \begingroup \setstretch{-2.4}} {\endgroup}
+
+% COmpletar titulo
+\title{Auxiliar 13 - Búsqueda y Compresión de Texto}
+\course[CC3001]{Algoritmos y Estructuras de Datos}
+\professor{Nelson Baloian}
+\professor{Patricio Poblete}
+\assistant{Gabriel Azócar, Manuel Cáceres}
+\assistant{Michel Llorens, Sergio Peñafiel}
+
+
+\begin{document}
+\maketitle
+
+\vspace{-1ex}
+
+
+\begin{problems}
+
+
+\problem \ptitle{Búsqueda en texto (KMP)}
+
+Escriba la función sufijoMasLargo que toma un patrón de largo m y un texto de largo n y retorna el largo máximo de un sufijo del patrón contenido en el texto.
+La función debe modificar el algoritmo de Knuth − Morris − Pratt, por lo que se acepta una complejidad de O(n + m)
+
+\problem \ptitle{Otro Algoritmo de Compresión}\\
+Considere el siguiente algoritmo de compresión de un texto $T$ de largo $n$.\\
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwIn{$T[1:n]$}
+ $i\gets 1$\;
+ \While{$i \le n$}{
+  Encontrar $T[i:j]$ más largo que aparezca como substring de $T[1:j-1]$. Digamos que este substring es $T[x:y] = T[i:j]$\;
+  \texttt{print} $(x,|T[i:j]|, T[j+1])$\;
+  $i\gets j+2$
+ }
+\end{algorithm}
+\begin{enumerate}[a)]
+    \item ¿Cuál es el resultado de ejecutar el algoritmo sobre $abaababbaab$?
+    \item ¿Cuál es el resultado de ejecutar el algoritmo sobre $aaaaaaaaaaa$?
+    \item ¿Por qué es importante $T[j+1]$ en el algoritmo? ¿Cómo soluciona LZW este fenómeno?
+    \item ¿Qué problema tiene el algoritmo cuando $n$ es muy grande? ¿Cómo lo mejoraría? ¿Cuál es el costo en este caso?
+\end{enumerate}
+\end{problems}
+\end{document}
